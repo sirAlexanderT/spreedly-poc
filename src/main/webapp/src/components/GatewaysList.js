@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from "react";
 import GatewayService from "../services/GatewayService";
-import {Link} from "react-router-dom";
 
 const GatewaysList = () => {
     const [gateways, setGateways] = useState([]);
     const [currentGateway, setCurrentGateway] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(-1);
     const [searchName, setSearchName] = useState("");
+    const [currentCredentials, setCurrentCredentials] = useState({});
 
     useEffect(() => {
         retrieveGateways();
@@ -15,6 +15,28 @@ const GatewaysList = () => {
     const onChangeSearchName = e => {
         const searchName = e.target.value;
         setSearchName(searchName);
+    };
+
+    const handleInputChange = event => {
+        const {name, value} = event.target;
+        setCurrentCredentials({...currentCredentials, [name]: value});
+    };
+
+    const createGateway = () => {
+        var data = {
+            gatewayType: currentGateway.gateway_type,
+            gatewayCredentials: currentCredentials
+        };
+
+        console.log(" we have some data - woohoo! ", data)
+
+        GatewayService.create(data)
+            .then(response => {
+                console.log("we have a response", response.data);
+            })
+            .catch(e => {
+                console.log("oh! oh!", e);
+            });
     };
 
     const retrieveGateways = () => {
@@ -128,15 +150,29 @@ const GatewaysList = () => {
                             <label>
                                 <strong>Company Name:</strong>
                             </label>{" "}
-                            {currentGateway.company_name }
+                            {currentGateway.company_name}
                         </div>
 
-                        <Link
-                            to={"/gateways" + currentGateway.gateway_type}
-                            className="badge badge-warning"
-                        >
-                            Edit
-                        </Link>
+                        {
+                            currentGateway.auth_modes
+                            && currentGateway.auth_modes[0].credentials.map((credential, index) => (
+                                    <div key={index}>
+                                        <label htmlFor={credential.name + index}>{credential.label}</label>
+                                        <input type={credential.safe ? "text" : "password"}
+                                               className="form-control form-control-sm"
+                                               name={credential.name}
+                                               id={credential.name + index}
+                                               required
+                                               value={currentCredentials.name}
+                                               onChange={handleInputChange}/>
+                                    </div>
+                                )
+                            )
+                        }
+
+                        <button className="m-3 btn btn-sm btn-success" onClick={createGateway}>
+                            Submit
+                        </button>
                     </div>
                 ) : (
                     <div>

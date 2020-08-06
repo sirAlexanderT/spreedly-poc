@@ -12,8 +12,13 @@ const findByName = name => {
     return http.get(`/tutorials?name=${name}`);
 };
 
+const create = data => {
+    return http.post("/gateways", data);
+};
+
 export default {
     getSupportedGateways,
     removeAllSupportedGateways,
-    findByName
+    findByName,
+    create
 };
