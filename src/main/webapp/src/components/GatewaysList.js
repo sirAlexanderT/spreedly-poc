@@ -90,6 +90,7 @@ const GatewaysList = () => {
                         type="text"
                         className="form-control"
                         placeholder="Search by name"
+                        autocomplete="off"
                         value={searchName}
                         onChange={onChangeSearchName}
                     />
