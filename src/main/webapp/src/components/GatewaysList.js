@@ -106,6 +106,7 @@ const GatewaysList = () => {
             </div>
             <div className="col-md-5 mt-3">
                 <h4>Supported Gateways</h4>
+                <i>Showing <b>{filteredGateways.length}</b> of <b>{gateways.length}</b></i>
 
                 <ul className="list-group scroll overflow-auto mt-3">
                     {
