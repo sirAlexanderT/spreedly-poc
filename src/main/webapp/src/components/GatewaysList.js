@@ -3,6 +3,7 @@ import GatewayService from "../services/GatewayService";
 
 const GatewaysList = () => {
     const [gateways, setGateways] = useState([]);
+    const [filteredGateways, setFilteredGateways] = useState([]);
     const [currentGateway, setCurrentGateway] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(-1);
     const [searchName, setSearchName] = useState("");
@@ -15,6 +16,8 @@ const GatewaysList = () => {
     const onChangeSearchName = e => {
         const searchName = e.target.value;
         setSearchName(searchName);
+        let filtered = gateways.filter(str => str.name.toLowerCase().includes(searchName.toLowerCase()));
+        setFilteredGateways(filtered);
     };
 
     const handleInputChange = event => {
@@ -23,7 +26,7 @@ const GatewaysList = () => {
     };
 
     const createGateway = () => {
-        var data = {
+        let data = {
             gatewayType: currentGateway.gateway_type,
             gatewayCredentials: currentCredentials
         };
@@ -42,7 +45,9 @@ const GatewaysList = () => {
     const retrieveGateways = () => {
         GatewayService.getSupportedGateways()
             .then(response => {
-                setGateways(response.data.gateways);
+                const gatewaysResponse = response.data.gateways;
+                setGateways(gatewaysResponse);
+                setFilteredGateways(gatewaysResponse);
                 console.log(response.data);
             })
             .catch(e => {
@@ -73,19 +78,13 @@ const GatewaysList = () => {
     };
 
     const findByName = () => {
-        GatewayService.findByName(searchName)
-            .then(response => {
-                setGateways(response.data);
-                console.log(response.data);
-            })
-            .catch(e => {
-                console.log(e);
-            });
+        let filtered = gateways.filter(str => str.name.toLowerCase().includes(searchName.toLowerCase()));
+        setFilteredGateways(filtered);
     };
 
     return (
         <div className="list row">
-            <div className="col-md-8">
+            <div className="col-md-12">
                 <div className="input-group mb-3">
                     <input
                         type="text"
@@ -105,36 +104,38 @@ const GatewaysList = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-md-6">
-                <h4>Gateways List</h4>
+            <div className="col-md-5 mt-3">
+                <h4>Supported Gateways</h4>
 
-                <ul className="list-group">
-                    {gateways &&
-                    gateways.map((gateway, index) => (
-                        <li
-                            className={
-                                "list-group-item " + (index === currentIndex ? "active" : "")
-                            }
-                            onClick={() => setActiveGateway(gateway, index)}
-                            key={index}
-                        >
-                            {gateway.name}
-                        </li>
-                    ))}
+                <ul className="list-group scroll overflow-auto mt-3">
+                    {
+                        filteredGateways &&
+                        filteredGateways.map((gateway, index) => (
+                            <li
+                                className={
+                                    "list-group-item " + (index === currentIndex ? "active" : "")
+                                }
+                                onClick={() => setActiveGateway(gateway, index)}
+                                key={index}
+                            >
+                                {gateway.name}
+                            </li>
+                        ))}
                 </ul>
 
                 <button
-                    className="m-3 btn btn-sm btn-danger"
+                    className="m-3 btn btn-sm btn-secondary"
                     onClick={removeAllSupportedGateways}
                 >
-                    Remove All
+                    Refresh
                 </button>
             </div>
-            <div className="col-md-6">
+            <div className="col-md-1"/>
+            <div className="col-md-6 mt-3">
                 {currentGateway ? (
                     <div>
                         <h4>Gateway</h4>
-                        <div>
+                        <div className="mt-3">
                             <label>
                                 <strong>Name:</strong>
                             </label>{" "}
@@ -176,8 +177,7 @@ const GatewaysList = () => {
                     </div>
                 ) : (
                     <div>
-                        <br/>
-                        <p>Please click on a Gateway...</p>
+                        <h5><i>Please click on a Gateway...</i></h5>
                     </div>
                 )}
             </div>
