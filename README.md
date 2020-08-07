@@ -4,12 +4,24 @@ This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
 
-## Running the application in dev mode
+And Includes a React app for the front-end
+
+## Running the application in dev mode - Frontend (React)
+
+```
+cd src/main/webapp
+
+npm run start
+```
+
+## Running the application in dev mode - Backend
 
 You can run your application in dev mode that enables live coding using:
 ```
-./mvnw quarkus:dev
+./mvnw clean compile quarkus:dev
 ```
+
+
 
 ## Packaging and running the application
 
@@ -28,3 +40,7 @@ Or, if you don't have GraalVM installed, you can run the native executable build
 You can then execute your native executable with: `./target/spreedly-poc-0.0.1-runner`
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/building-native-image.
+
+## Access Application - Local Environment
+
+Once built, Application can be accessed via `localhost:8085`
