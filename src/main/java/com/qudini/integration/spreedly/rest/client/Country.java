@@ -1,7 +1,10 @@
 package com.qudini.integration.spreedly.rest.client;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Country {
 
     public String name;

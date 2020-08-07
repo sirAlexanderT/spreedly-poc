@@ -3,16 +3,18 @@ package com.qudini.integration.spreedly.rest;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
 
+import static com.qudini.TestConstants.BASE_PATH;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 
 @QuarkusTest
 public class CountriesResourceTest {
 
+
     @Test
     public void testCountryNameEndpoint() {
         given()
-                .when().get("/country/name/greece")
+                .when().get(BASE_PATH + "/country/name/greece")
                 .then()
                 .statusCode(200)
                 .body("$.size()", is(1),
@@ -26,7 +28,7 @@ public class CountriesResourceTest {
     @Test
     public void testCountryNameAsyncEndpoint() {
         given()
-                .when().get("/country/name-async/greece")
+                .when().get(BASE_PATH + "/country/name-async/greece")
                 .then()
                 .statusCode(200)
                 .body("$.size()", is(1),
