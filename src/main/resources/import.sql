@@ -1,0 +1,2 @@
+INSERT INTO merchant(name, description)VALUES ('Brown Thomas', 'Most Exclusive Luxury Brands');
+INSERT INTO merchant(name, description)VALUES ('Nike', 'Any Place. Any Time. Any Condition. Be Your Best Every Time ');
