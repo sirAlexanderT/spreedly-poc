@@ -6,6 +6,21 @@ If you want to learn more about Quarkus, please visit its website: https://quark
 
 And Includes a React app for the front-end
 
+## Spreedly credentials
+
+To use `Spreedly` ensure you've gone through the `Qudick Start` section of their documentation. https://docs.spreedly.com/
+
+Completing the above will ensure you have the required environment variables to completed the set up below.
+
+Set the following EnvVars (e.g. via your `~/.bash_profile`, `~/.zprofile`, or whatever you're using):
+
+
+```shell script
+export SPREEDLY_API_HOST=https://core.spreedly.com
+export SPREEDLY_ENVIRONMENT_KEY=<supplied environment-keyn>
+export SPREEDLY_ACCESS_SECRET=<supplied access-secret>
+```
+
 ## Running the application in dev mode - Frontend (React)
 
 ```
