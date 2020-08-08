@@ -1,4 +1,4 @@
-package com.qudini.integration.spreedly.rest;
+package com.qudini.service.integration.spreedly.rest;
 
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;

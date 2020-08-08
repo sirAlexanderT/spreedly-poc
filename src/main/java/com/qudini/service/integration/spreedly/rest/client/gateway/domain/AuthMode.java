@@ -1,4 +1,4 @@
-package com.qudini.integration.spreedly.rest.client.gateway.domain;
+package com.qudini.service.integration.spreedly.rest.client.gateway.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

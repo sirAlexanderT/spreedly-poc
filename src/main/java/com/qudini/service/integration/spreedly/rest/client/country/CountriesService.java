@@ -1,4 +1,4 @@
-package com.qudini.integration.spreedly.rest.client;
+package com.qudini.service.integration.spreedly.rest.client.country;
 
 import io.smallrye.mutiny.Uni;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;

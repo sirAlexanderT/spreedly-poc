@@ -1,7 +1,7 @@
-package com.qudini.integration.spreedly.rest;
+package com.qudini.service.integration.spreedly.rest.client.country;
 
-import com.qudini.integration.spreedly.rest.client.CountriesService;
-import com.qudini.integration.spreedly.rest.client.Country;
+import com.qudini.service.integration.spreedly.rest.client.country.CountriesService;
+import com.qudini.service.integration.spreedly.rest.client.country.Country;
 import io.smallrye.mutiny.Uni;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 

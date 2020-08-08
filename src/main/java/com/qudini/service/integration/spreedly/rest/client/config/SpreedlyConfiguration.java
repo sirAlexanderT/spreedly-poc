@@ -1,4 +1,4 @@
-package com.qudini.integration.spreedly.rest.client.config;
+package com.qudini.service.integration.spreedly.rest.client.config;
 
 import io.quarkus.arc.config.ConfigProperties;
 import org.eclipse.microprofile.config.inject.ConfigProperty;

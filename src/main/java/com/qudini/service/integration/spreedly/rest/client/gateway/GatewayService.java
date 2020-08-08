@@ -1,7 +1,7 @@
-package com.qudini.integration.spreedly.rest.client.gateway;
+package com.qudini.service.integration.spreedly.rest.client.gateway;
 
-import com.qudini.integration.spreedly.rest.client.gateway.domain.AuthenticatedGateways;
-import com.qudini.integration.spreedly.rest.client.gateway.domain.PublicGateways;
+import com.qudini.service.integration.spreedly.rest.client.gateway.domain.AuthenticatedGateways;
+import com.qudini.service.integration.spreedly.rest.client.gateway.domain.PublicGateways;
 import io.smallrye.mutiny.Uni;
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.eclipse.microprofile.rest.client.annotation.ClientHeaderParam;
