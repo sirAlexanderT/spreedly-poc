@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import GatewayService from "../services/GatewayService";
+import MerchantService from "../services/MerchantService";
 
 const GatewaysList = () => {
     const [gateways, setGateways] = useState([]);
@@ -8,9 +9,11 @@ const GatewaysList = () => {
     const [currentIndex, setCurrentIndex] = useState(-1);
     const [searchName, setSearchName] = useState("");
     const [currentCredentials, setCurrentCredentials] = useState({});
+    const [merchants, setMerchants] = useState([]);
 
     useEffect(() => {
         retrieveGateways();
+        retrieveMerchants();
     }, []);
 
     const onChangeSearchName = e => {
@@ -48,6 +51,17 @@ const GatewaysList = () => {
                 const gatewaysResponse = response.data.gateways;
                 setGateways(gatewaysResponse);
                 setFilteredGateways(gatewaysResponse);
+                console.log(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    };
+
+    const retrieveMerchants = () => {
+        MerchantService.getAllMerchants()
+            .then(response => {
+                setMerchants(response.data);
                 console.log(response.data);
             })
             .catch(e => {
@@ -154,6 +168,19 @@ const GatewaysList = () => {
                                 <strong>Company Name:</strong>
                             </label>{" "}
                             {currentGateway.company_name}
+                        </div>
+                        <div className="form-group mb-3 mt-3">
+                            <label htmlFor="sel1">
+                                <strong>Select a Merchant:</strong>
+                            </label>
+                            <select className="form-control form-control-sm" id="sel1">
+                                <option selected className="font-weight-bold">Choose...</option>
+                                {
+                                    merchants &&
+                                    merchants.map((merchant, index) => (
+                                        <option>{merchant.name}</option>
+                                    ))}
+                            </select>
                         </div>
 
                         {
