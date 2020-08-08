@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Gateways {
+public class AuthenticatedGateways {
 
-    public List<Gateway> gateways;
+    public List<AuthenticatedGateway> gateways;
 }

@@ -1,6 +1,7 @@
 package com.qudini.integration.spreedly.rest.client.gateway;
 
-import com.qudini.integration.spreedly.rest.client.gateway.domain.Gateways;
+import com.qudini.integration.spreedly.rest.client.gateway.domain.AuthenticatedGateways;
+import com.qudini.integration.spreedly.rest.client.gateway.domain.PublicGateways;
 import io.smallrye.mutiny.Uni;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
@@ -21,8 +22,15 @@ public class GatewayResource {
     @GET
     @Path("/supported")
     @Produces(MediaType.APPLICATION_JSON)
-    public Uni<Gateways> listSupportedGateways() {
+    public Uni<PublicGateways> listSupportedGateways() {
         return gatewayService.listSupportedGateways();
+    }
+
+    @GET
+    @Path("/created")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Uni<AuthenticatedGateways> listCreatedGateways() {
+        return gatewayService.listCreatedGateways();
     }
 
 }
