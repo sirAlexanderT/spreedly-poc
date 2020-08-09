@@ -1,6 +1,8 @@
 package com.qudini.service.integration.spreedly.rest.client.gateway;
 
 import com.qudini.service.integration.spreedly.rest.client.gateway.domain.AuthenticatedGateways;
+import com.qudini.service.integration.spreedly.rest.client.gateway.domain.GatewayRequest;
+import com.qudini.service.integration.spreedly.rest.client.gateway.domain.GatewayResponse;
 import com.qudini.service.integration.spreedly.rest.client.gateway.domain.PublicGateways;
 import io.smallrye.mutiny.Uni;
 import org.eclipse.microprofile.config.ConfigProvider;
@@ -9,6 +11,7 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 import javax.inject.Singleton;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import java.util.Base64;
@@ -28,6 +31,12 @@ public interface GatewayService {
     @Produces("application/json")
     @ClientHeaderParam(name = "Authorization", value = "{generateAuthHeader}")
     Uni<AuthenticatedGateways> listCreatedGateways();
+
+    @POST
+    @Path("/gateways.json")
+    @Produces("application/json")
+    @ClientHeaderParam(name = "Authorization", value = "{generateAuthHeader}")
+    Uni<GatewayResponse> createGateway(GatewayRequest request);
 
 
     default String generateAuthHeader() {
