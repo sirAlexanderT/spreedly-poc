@@ -10,6 +10,7 @@ const GatewaysList = () => {
     const [searchName, setSearchName] = useState("");
     const [currentCredentials, setCurrentCredentials] = useState({});
     const [merchants, setMerchants] = useState([]);
+    const [selectedMerchantId, setSelectedMerchantId] = useState(-1);
 
     useEffect(() => {
         retrieveGateways();
@@ -28,8 +29,14 @@ const GatewaysList = () => {
         setCurrentCredentials({...currentCredentials, [name]: value});
     };
 
+    const handleMerchantSelect = e => {
+        setSelectedMerchantId(e.target.value);
+    };
+
+
     const createGateway = () => {
         let data = {
+            qudiniMerchantId: selectedMerchantId,
             gatewayType: currentGateway.gateway_type,
             gatewayCredentials: currentCredentials
         };
@@ -104,7 +111,7 @@ const GatewaysList = () => {
                         type="text"
                         className="form-control"
                         placeholder="Search by name"
-                        autocomplete="off"
+                        autoComplete="off"
                         value={searchName}
                         onChange={onChangeSearchName}
                     />
@@ -173,12 +180,18 @@ const GatewaysList = () => {
                             <label htmlFor="sel1">
                                 <strong>Select a Merchant:</strong>
                             </label>
-                            <select className="form-control form-control-sm" id="sel1">
-                                <option selected className="font-weight-bold">Choose...</option>
+                            <select
+                                className="form-control form-control-sm"
+                                id="sel1"
+                                onChange={handleMerchantSelect}
+                                value={selectedMerchantId}>
+                                <option value="" className="font-weight-bold">Choose...</option>
                                 {
                                     merchants &&
-                                    merchants.map((merchant, index) => (
-                                        <option>{merchant.name}</option>
+                                    merchants.map((merchant, key) => (
+                                        <option
+                                            value={merchant.id}
+                                            key={key}>{merchant.name}</option>
                                     ))}
                             </select>
                         </div>
