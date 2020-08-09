@@ -1,2 +1,4 @@
 - When creating a gateway, what happens if you already have a gateway / token???
 - In gateways credentials response, we use the `credentials.safe property` to check if the input should be of type `text` or `password`
+- Can a merchant support multiple gateways?
+- Support multiple authorisation modes i.e. paypal..

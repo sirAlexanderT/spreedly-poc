@@ -21,6 +21,17 @@ export SPREEDLY_ENVIRONMENT_KEY=<supplied environment-keyn>
 export SPREEDLY_ACCESS_SECRET=<supplied access-secret>
 ```
 
+## Initial MySQL Setup for New deployment
+
+To start the service locally you need to make sure you first have a mysql container running in your machine.
+
+Connect to mysql as `root` and run the following:
+
+```sql
+CREATE SCHEMA IF NOT EXISTS spreedly_poc DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+GRANT ALL PRIVILEGES ON spreedly_poc.*  TO 'qudini_spreedly_poc'@'%' IDENTIFIED BY 'password';
+```
+
 ## Running the application in dev mode - Frontend (React)
 
 ```

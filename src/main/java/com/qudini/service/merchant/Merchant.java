@@ -11,6 +11,8 @@ import java.io.Serializable;
 @Table(name = "merchant")
 public class Merchant extends GeneratedId implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Column(name = "name", columnDefinition = "VARCHAR(255)", nullable = false)
     private String name;
 
