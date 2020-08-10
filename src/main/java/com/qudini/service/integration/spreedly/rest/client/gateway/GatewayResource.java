@@ -2,10 +2,10 @@ package com.qudini.service.integration.spreedly.rest.client.gateway;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.qudini.service.integration.spreedly.rest.client.gateway.domain.AuthenticatedGateways;
+import com.qudini.service.integration.spreedly.rest.client.gateway.domain.AuthenticatedGatewaysResponse;
 import com.qudini.service.integration.spreedly.rest.client.gateway.domain.GatewayRequest;
 import com.qudini.service.integration.spreedly.rest.client.gateway.domain.GatewayResponse;
-import com.qudini.service.integration.spreedly.rest.client.gateway.domain.PublicGateways;
+import com.qudini.service.integration.spreedly.rest.client.gateway.domain.PublicGatewaysResponse;
 import com.qudini.service.integration.spreedly.rest.mappers.ToGatewayRequestMapper;
 import com.qudini.service.integration.spreedly.rest.payload.MerchantGatewayPayload;
 import com.qudini.service.merchant.Merchant;
@@ -24,6 +24,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -50,15 +51,22 @@ public class GatewayResource {
     @GET
     @Path("/supported")
     @Produces(MediaType.APPLICATION_JSON)
-    public Uni<PublicGateways> listSupportedGateways() {
+    public Uni<PublicGatewaysResponse> listSupportedGateways() {
         return gatewayService.listSupportedGateways();
     }
 
     @GET
     @Path("/created")
     @Produces(MediaType.APPLICATION_JSON)
-    public Uni<AuthenticatedGateways> listCreatedGateways() {
+    public Uni<AuthenticatedGatewaysResponse> listCreatedGateways() {
         return gatewayService.listCreatedGateways();
+    }
+
+    @GET
+    @Path("/{token}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Uni<GatewayResponse> getCreatedGateway(@PathParam("token") String token) {
+        return gatewayService.showGateway(token);
     }
 
     @POST
