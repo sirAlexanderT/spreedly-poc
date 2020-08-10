@@ -3,9 +3,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
-// import AddGateway from "./components/AddGateway";
-// import Gateway from "./components/Gateway";
 import GatewaysList from "./components/GatewaysList";
+import Store from "./store";
 
 function App() {
     return (
@@ -22,8 +21,8 @@ function App() {
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link to={"/add"} className="nav-link">
-                                Add
+                            <Link to={"/store"} className="nav-link">
+                                Store
                             </Link>
                         </li>
                     </div>
@@ -32,6 +31,7 @@ function App() {
                 <div className="container mt-3">
                     <Switch>
                         <Route exact path={["/", "/gateways"]} component={GatewaysList} />
+                        <Route exact path="/store" component={Store} />
                     </Switch>
                 </div>
             </div>

@@ -1,6 +1,9 @@
+- Can a merchant support multiple gateways?
 - When creating a gateway, what happens if you already have a gateway / token???
 ----> gateways can be duplicated per merchant, so we probably need to have some constraints,
       e.g between `merchant and gateway_type`
 - In gateways credentials response, we use the `credentials.safe property` to check if the input should be of type `text` or `password`
-- Can a merchant support multiple gateways?
 - Support multiple authorisation modes i.e. paypal..
+- Is the 'payment_method_token' stored against the customer?
+-------> or do we need to create new entity 'billing_customer'?
+-------> or is just having a `customer_payment_method' related to a customer ok?
