@@ -24,6 +24,9 @@ const Store = props => {
 
             <Products/>
 
+            <a href="/details" className="btn btn-block btn-primary">Next</a>
+
+
             <div className="pt-4 my-md-5 pt-md-5 border-top">
                 <Cart/>
             </div>

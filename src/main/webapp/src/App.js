@@ -5,6 +5,7 @@ import "./App.css";
 
 import GatewaysList from "./components/GatewaysList";
 import Store from "./store";
+import CustomerDetails from "./components/CustomerDetails";
 
 function App() {
     return (
@@ -32,6 +33,7 @@ function App() {
                     <Switch>
                         <Route exact path={["/", "/gateways"]} component={GatewaysList} />
                         <Route exact path="/store" component={Store} />
+                        <Route exact path="/details" component={CustomerDetails} />
                     </Switch>
                 </div>
             </div>
