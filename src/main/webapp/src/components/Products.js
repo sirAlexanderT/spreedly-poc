@@ -39,7 +39,7 @@ const Products = props => {
     return (
         <div>
             <nav className="nav nav-tabs mb-3">{props.categories.map(renderCategory)}</nav>
-            <div className="list row">
+            <div className="card-deck mb-3 text-center">
                 {props.categories[active]
                     ? props.categories[active].products.map(renderProduct)
                     : false}

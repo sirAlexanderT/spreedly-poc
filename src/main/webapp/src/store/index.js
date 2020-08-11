@@ -17,17 +17,15 @@ const Store = props => {
 
     return (
         <Provider store={store}>
-            <div className="list row mb-3">
-                <h1>Shopping Cart</h1>
+            <div className="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+                <h1 className="display-4">Online Services</h1>
+                <p className="lead">Get something.</p>
             </div>
 
-            <div className="list row">
-                <div className="list row mb-3">
-                    <Products/>
-                </div>
-                <div className="list row">
-                    <Cart/>
-                </div>
+            <Products/>
+
+            <div className="pt-4 my-md-5 pt-md-5 border-top">
+                <Cart/>
             </div>
 
         </Provider>

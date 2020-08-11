@@ -9,9 +9,10 @@ const Cart = props => {
     const renderProduct = (product, index) => (
         <div key={index}>
             <span>{product.name} </span>
-            <span> ${product.price} </span>
-            <span>{product.quantity}</span>
+            <span className="ml-3"> ${product.price} </span>
+            <span className="ml-3">{product.quantity}</span>
             <input
+                className="mt-3 ml-3"
                 type="button"
                 onClick={() => props.removeProduct(index)}
                 value="x"
@@ -27,14 +28,16 @@ const Cart = props => {
             .toFixed(0);
 
     return (
-        <div>
-            <div className="header">Cart ({countItems()} items)</div>
-            <div className="cart">
-                {props.products.length
-                    ? props.products.map(renderProduct)
-                    : "Cart is empty."}
+        <div className="card mb-4 box-shadow">
+            <div className="card-header">Cart ({countItems()} items)</div>
+            <div className="card-body">
+                <div className="card-title pricing-card-title">
+                    {props.products.length
+                        ? props.products.map(renderProduct)
+                        : "Cart is empty."}
+                </div>
             </div>
-            <div className="total">
+            <div className="card-footer">
                 <span>Total </span>
                 <span> ${props.products.reduce(calculateTotal, 0).toFixed(2)}</span>
             </div>
